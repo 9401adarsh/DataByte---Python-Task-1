@@ -13,6 +13,7 @@ Created on Sun Jan  3 14:56:53 2021
 
 import pandas as pd
 data = pd.read_csv("DataByte - Task1 (Python).csv")
+data = data.fillna('')
 Country_dict = dict()
 for index,rows in data.iterrows():
     Country_dict[rows.Code] = rows.Name
@@ -20,14 +21,17 @@ CC1 = input("Enter Country Code 1:")
 CC2 = input("Enter Country Code 2:")
 CC_result = list()
 CC_Codes = list(Country_dict.keys())
-index1 = CC_Codes.index(CC1)
-index2 = CC_Codes.index(CC2)
-if(index1 > index2):
-    index1, index2 = index2, index1
-for i in range(index1+1, index2):
-    CC_result.append(Country_dict[CC_Codes[i]])
-CC_result.sort()
-print(CC_result)
-
-
-    
+# =============================================================================
+# index1 = CC_Codes.index(CC1)
+# index2 = CC_Codes.index(CC2)
+# if(index1 > index2):
+#     index1, index2 = index2, index1
+# for i in range(index1+1, index2):
+#     CC_result.append(Country_dict[CC_Codes[i]])
+# CC_result.sort()
+# print(CC_result)
+# =============================================================================
+x = dict(sorted(Country_dict.items(), key = lambda kv : kv[1]))
+for k,v in x.items():
+    if(k > CC1 and k < CC2):
+        print(v)
